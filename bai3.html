@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="quest3">
+        <h2>hiển thị được các thông tin của user:</h2>
+        <ul>
+            <li class="name"></li>
+            <li class="email"></li>
+            <li class="date_of_birth"></li>
+            <li class="address"></li>
+            <li class="phone"></li>
+        </ul>
+    </div>
+
+    <script>
+        var $ =document.querySelector.bind(document)
+        async function quest3() {
+            try {
+                const response = await fetch("https://randomuser.me/api/");
+                const user = await response.json();
+                console.log(user);
+                $("#quest3 .name").innerText = `Họ tên: ${user.results[0].name.first} ${user.results[0].name.last}`;
+                $("#quest3 .email").innerText = `Email: ${user.results[0].email}`;
+                $("#quest3 .date_of_birth").innerText = `Ngày sinh: ${user.results[0].dob.date}`;
+                $("#quest3 .address").innerText = `Địa chỉ: ${user.results[0].location.city} ${user.results[0].location.country}`;
+                $("#quest3 .phone").innerText = `Số điện thoại: ${user.results[0].phone}`;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        quest3();
+    </script>
+</body>
+
+</html>

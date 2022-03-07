@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            box-sizing: border-box;
+        }
+        .set-time{
+            display: grid;
+            grid-template-columns: auto auto auto auto auto auto;
+            grid-template-rows: auto auto;
+            width: 500px;
+            grid-gap: 8px;
+        }
+        button{
+            min-width: 60px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 2rem;
+            background-image: linear-gradient(RGB(69, 251, 0),#35cd00);
+            border: 3px solid #666;
+            border-radius: 5px;
+
+        }
+        button.clear{
+            background-image: linear-gradient(RGB(162, 162, 162),#c3c3c3);
+            min-width: 120px;
+        }
+        button.clear:hover{
+            background-image: linear-gradient(#c3c3c3,RGB(162, 162, 162));
+            min-width: 120px;
+        }
+        button:hover{
+            background-image: linear-gradient(#35cd00,RGB(69, 251, 0));
+        }
+        .app{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+           
+        }
+
+        .display{
+            margin-bottom: 30px;
+            text-align: center;
+            background-color: #999;
+            color: wheat;
+            border: 2px solid #000;
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            <div class="display">
+                <span class="hours">
+                    <span class="first">0</span>
+                    <span class="last">0</span>
+                </span>:
+                <span class="min">
+                    <span class="first">0</span>
+                    <span class="last">0</span>
+                </span>:
+                <span class="sec">
+                    <span class="first">0</span>
+                    <span class="last">0</span>
+                </span>
+            </div>
+            <div class="set-time">
+                <button class="number" value="0">0</button>
+                <button class="number" value="1">1</button>
+                <button class="number" value="2">2</button>
+                <button class="number" value="3">3</button>
+                <button class="number" value="4">4</button>
+                <button class="set">Set</button>
+                <button class="number" value="5">5</button>
+                <button class="number" value="6">6</button>
+                <button class="number" value="7">7</button>
+                <button class="number" value="8">8</button>
+                <button class="number" value="9">9</button>
+                <button class="clear">Clear</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var $ = document.querySelector.bind(document)
+        var $$ = document.querySelectorAll.bind(document)
+        
+        
+    
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        .container{
+            width: 100%;
+            height: 100vh;
+        }
+        .start,
+        .pause,
+        .continues{
+            display: none;
+        }
+        .start.active,
+        .pause.active,
+        .continues.active{
+            display: block;
+        }
+        .control-group{
+            display: flex;
+        }
+
+
+        .watch{
+            width: 400px;
+            height: 100px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #cccccc;
+            border-radius: 3px;
+        }
+        .watch >span{
+            font-size: 2.2rem;
+        }
+        button{
+            min-width: 110px;
+            height: 52px;
+            cursor: pointer;
+            border: 3px solid #666;
+            border-radius: 5px;
+            color: white;
+        }
+        button:hover{
+            filter: brightness(90%);
+        }
+        .control-group{
+            margin-top: 50px;
+            margin-left:50px ;
+        }
+        .clear{
+            margin-left: 100px;
+            background-color: red;
+        }
+         button.start,
+         button.pause{
+            background-image: linear-gradient(RGB(69, 251, 0),#35cd00);
+        }
+        button.continues{
+            background-image:linear-gradient(RGB(65, 244, 255),RGB(14, 25, 177));
+        }
+    </style>
+</head>
+<body>
+    <div class="container ">
+        <div class="watch">
+            <span class="hours">00</span>:
+            <span class="min">00</span>:
+            <span class="sec">00</span>
+        </div>
+        <div class="control-group">
+            <div class="control-btn">
+                <button class="start active">Start</button>
+                <button class="pause">Pause</button>
+                <button class="continues">Continues</button>
+            </div>
+            <button class="clear">Clear</button>
+        </div>
+    </div>
+
+    <script>
+        var $ = document.querySelector.bind(document)
+        var hoursEl = $('.hours')
+        var minEl = $('.min')
+        var secEl = $('.sec')
+        var startBtn = $('.start')
+        var pauseBtn = $('.pause')
+        var continuesBtn = $(".continues")
+        var clearBtn = $('.clear')
+        var hours = 0;
+        var min = 0;
+        var sec = 0;
+
+        function start(){
+            sec++;
+            if( sec <=9){
+                secEl.innerHTML = "0" + sec
+            }
+            if(sec > 9){
+                secEl.innerHTML = sec
+            }
+            if(sec >=60){
+                min++;
+                minEl.innerHTML = "0"+min
+                sec = 0;
+                secEl.innerHTML ="0"+0;
+            }
+            if(min > 9){
+                minEl.innerHTML = min
+            }
+            if(min>=60){
+                hours++;
+                hoursEl.innerHTML = "0"+hours;
+                min = 0;
+                minEl.innerHTML = "0"+0;
+            }
+            if(hours >9){
+                hoursEl.innerHTML = hours
+            }
+        }
+
+        startBtn.onclick = ()=>{
+              interval = setInterval(start,1000)
+             clearActive()
+             pauseBtn.classList.add('active')
+
+        }
+       
+        pauseBtn.onclick = ()=>{
+            clearActive()
+            clearInterval(interval)
+            continuesBtn.classList.add('active')
+        }
+        continuesBtn.onclick = ()=>{
+            clearActive()
+            interval = setInterval(start,1000)
+            pauseBtn.classList.add('active')
+        }
+
+        clearBtn.onclick = () =>{
+            clearInterval(interval)
+            clearActive()
+            startBtn.classList.add('active')
+            hours = 0;
+            min=0;
+            sec=0;
+            hoursEl.innerHTML = "00"
+            minEl.innerHTML = "00"
+            secEl.innerHTML = "00"
+
+        }
+
+        function clearActive(){
+            let activeEL = $('.control-group .control-btn button.active')
+            activeEL.classList.remove('active')
+        }
+
+
+        
+
+
+    </script>
+</body>
+</html>
